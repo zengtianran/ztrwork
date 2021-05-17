@@ -2,7 +2,7 @@
 <div>
     <div class="home-list-menu">
        <div class="list-menu" v-for="(item) in menus" :key="item.id" :style="{width: `${100 / columns}%`}">
-          <ListMenuItem :activeId="activeId" :menuItem="item" @active="$emit('active', item.id)" />
+          <ListMenuItem :activeId="activeId" :menuItem="item" @active="$emit('active', {itemId: item.id, itemPath: item.path})" />
        </div>
     </div>
     <div class="collapse" @click="isExpand = !isExpand">

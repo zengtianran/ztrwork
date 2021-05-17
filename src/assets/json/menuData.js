@@ -2,7 +2,7 @@ const menuData = [
   {
     id: '1',
     name: 'Promise',
-    path: ''
+    path: '/promise'
   },
   {
     id: '2',
@@ -51,13 +51,13 @@ const menuData = [
   },
   {
     id: '11',
-    name: '小程序',
+    name: 'VUE',
     path: ''
   },
   {
     id: '12',
-    name: '小程序',
-    path: ''
+    name: 'Echarts',
+    path: '/echarts'
   },
   {
     id: '13',

@@ -1,0 +1,51 @@
+ztrwork
+├─.DS_Store
+├─.editorconfig
+├─.env.development
+├─.env.production
+├─.env.test
+├─.eslintignore
+├─.eslintrc.js
+├─README.md
+├─babel.config.js
+├─package-lock.json
+├─package.json
+├─result.txt
+├─vue.config.js
+├─src
+|  ├─.DS_Store
+|  ├─App.vue
+|  ├─main.js
+|  ├─views
+|  |   ├─EchartsMap.vue
+|  |   ├─HomeMenu.vue
+|  |   └Promise.vue
+|  ├─utils
+|  |   └index.js
+|  ├─router
+|  |   ├─index.js
+|  |   ├─modules
+|  |   |    └menu.js
+|  ├─plugins
+|  |    └rem.js
+|  ├─components
+|  |     ├─Icon.vue
+|  |     ├─Input.vue
+|  |     ├─topSearch
+|  |     |     └search.vue
+|  |     ├─menu
+|  |     |  ├─Item.vue
+|  |     |  ├─TitleMenu.vue
+|  |     |  ├─listMenu.vue
+|  |     |  └listMenuItem.vue
+|  ├─assets
+|  |   ├─.DS_Store
+|  |   ├─logo.jpg
+|  |   ├─less
+|  |   |  ├─base.less
+|  |   |  ├─functions.less
+|  |   |  ├─index.less
+|  |   |  └variables.less
+|  |   ├─json
+|  |   |  └menuData.js
+|  |   ├─images

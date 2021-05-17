@@ -42,7 +42,11 @@ export default {
       this.isSelect = (!this.isSelect)
     },
     handleMenu($event) {
-      this.activeId = $event
+      console.log($event)
+      this.activeId = $event.itemId
+      if ($event.itemPath) {
+        this.$router.push($event.itemPath)
+      }
     },
     handleSearch($event) {
       console.log('homeMenu-KeyWord:' + $event)
