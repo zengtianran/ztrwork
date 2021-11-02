@@ -5,11 +5,13 @@
 </template>
 
 <script>
+import { Toast } from 'vant'
 export default {
   created() {
     console.log('created----->promise')
   },
   mounted() {
+    Toast('promise test')
     console.log('mounted----->promise')
   }
 }
