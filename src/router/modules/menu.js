@@ -24,6 +24,13 @@ const routes = [
     meta: {
       title: 'Echarts'
     }
+  }, {
+    path: '/video',
+    name: 'DuoxueVedio',
+    component: () => import('@/views/DuoxueVedio'),
+    meta: {
+      title: 'DuoxueVedio'
+    }
   }
 ]
 export default routes

@@ -24,7 +24,7 @@ module.exports = {
   outputDir: 'dist',
   assetsDir: 'static',
   filenameHashing: true,
-  productionSourceMap: false,
+  productionSourceMap:false,
   // eslint-loader 是否在保存的时候检查
   lintOnSave: true,
   pluginOptions: {
@@ -37,6 +37,7 @@ module.exports = {
       ]
     }
   },
+  runtimeCompiler: true,
   configureWebpack: config => ({
     // config: process.env.VUE_APP_ENV === 'production' ? Object.assign(config, {
     //   name: name,
@@ -50,29 +51,30 @@ module.exports = {
         src: resolve('src')
       }
     },
+    devtool: 'source-map',
     output: {
       // js输出重构【模块名称.时间戳】
       filename: `static/js/[name].${timestamp}.js`,
       chunkFilename: `static/js/[name].${timestamp}.js`
     },
     // 压缩混淆
-    optimization: IS_PROD
-      ? {
-        minimize: true,
-        minimizer: [
-          new TerserPlugin({
-            test: /\.js(\?.*)?$/i,
-            parallel: true,
-            terserOptions: {
-              compress: {
-                drop_debugger: true,
-                drop_console: false
-              }
-            }
-          })
-        ]
-      }
-      : {}
+    // optimization: IS_PROD
+    //   ? {
+    //     minimize: true,
+    //     minimizer: [
+    //       new TerserPlugin({
+    //         test: /\.js(\?.*)?$/i,
+    //         parallel: true,
+    //         terserOptions: {
+    //           compress: {
+    //             drop_debugger: true,
+    //             drop_console: false
+    //           }
+    //         }
+    //       })
+    //     ]
+    //   }
+    //   : {}
   }),
   chainWebpack: config => {
     // config.plugins.delete('preload') // TODO: need test
@@ -99,16 +101,16 @@ module.exports = {
       })
 
       // gzip需要nginx进行配合
-      config
-        .plugin('compression')
-        .use(CompressionWebpackPlugin)
-        .tap(() => [
-          {
-            test: /\.js$|\.html$|\.css/, // 匹配文件名
-            threshold: 10240, // 超过10k进行压缩
-            deleteOriginalAssets: false // 是否删除源文件
-          }
-        ])
+      // config
+      //   .plugin('compression')
+      //   .use(CompressionWebpackPlugin)
+      //   .tap(() => [
+      //     {
+      //       test: /\.js$|\.html$|\.css/, // 匹配文件名
+      //       threshold: 10240, // 超过10k进行压缩
+      //       deleteOriginalAssets: false // 是否删除源文件
+      //     }
+      //   ])
     }
     /**
      * 添加CDN参数到htmlWebpackPlugin配置中， 详见public/index.html 修改
@@ -164,23 +166,14 @@ module.exports = {
       })
       .end()
 
-    config
+      config
       // https://webpack.js.org/configuration/devtool/#development
       .when(process.env.VUE_APP_ENV === 'development', config =>
         config.devtool('cheap-source-map')
       )
 
     config.when(process.env.VUE_APP_ENV !== 'development', config => {
-      config
-        .plugin('ScriptExtHtmlWebpackPlugin')
-        .after('html')
-        .use('script-ext-html-webpack-plugin', [
-          {
-            // `runtime` must same as runtimeChunk name. default is `runtime`
-            inline: /runtime\..*\.js$/
-          }
-        ])
-        .end()
+       
 
       config.optimization.splitChunks({
         chunks: 'all',
@@ -233,15 +226,15 @@ module.exports = {
   },
   devServer: {
     open: false,
-    host: 'localhost',
+    host: '0.0.0.0',
     port: 8088,
     disableHostCheck: true,
     proxy: {
-      '/api': {
+      '/course': {
         target: process.env.VUE_APP_API_SERVER,
         changeOrigin: true,
         pathRewrite: {
-          '^/api': '/api'
+          '^/course': '/course'
         },
         onProxyReq: proxyReq
       }

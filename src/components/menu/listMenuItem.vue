@@ -1,5 +1,5 @@
 <template>
-    <div class="list-menu-item">
+    <div class="list-menu-item" :class="exClass">
         <Item :isActive="activeId === menuItem.id" @active="$emit('active')">
             <div class="inner">
                 <span>{{menuItem.name}}</span>
@@ -20,6 +20,10 @@ export default {
     menuItem: {
       type: Object,
       default: () => ({})
+    },
+    exClass: {
+      type: String,
+      default: ''
     }
   },
   components: {

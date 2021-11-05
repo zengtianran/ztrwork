@@ -2,7 +2,7 @@
     <div class="top-search-wrap">
       <form class="search-inner" @submit="handleSearch">
        <div class="search-inp">
-            <Input type="text" v-model:value="inpVal" placeholder="请输入关键字" />
+            <Input type="text" v-model:value="inpVal" :placeholder="placeholder" />
        </div>
        <div class="search-icon" @click="handleSearch">
             <Icon type="search" extraClass="search" />
@@ -16,7 +16,10 @@ import Input from '../Input'
 import Icon from '../Icon'
 export default {
   props: {
-
+    placeholder: {
+      type: String,
+      default: '请输入关键字'
+    }
   },
   components: {
     Input,

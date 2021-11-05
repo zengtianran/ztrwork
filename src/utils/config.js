@@ -1,7 +1,7 @@
 
 // 请求地址前缀
 // const base = process.env.NODE_ENV === 'development' ? '' : '';
-const base = 'https://gitlab.ylzpay.com/frontweb/templates'
+const base = ''
 // const base = process.env.NODE_ENV
 // 完整请求地址
 const url = base
@@ -37,7 +37,7 @@ const responseConfig = {
   }
 }
 
-export {
+export default {
   base,
   url,
   contentType,
