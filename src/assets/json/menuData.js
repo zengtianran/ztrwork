@@ -63,6 +63,11 @@ const menuData = [
     id: '13',
     name: 'VUE3',
     path: ''
+  },
+  {
+    id: '14',
+    name: '自定义组件',
+    path: '/executeComponent'
   }
 ]
 export default menuData

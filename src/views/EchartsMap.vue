@@ -15,36 +15,98 @@ export default {
     initEcharts() {
     // 初始化echarts
       const bar = echarts.init(this.$refs.barChart)
+      // const option = {
+      //   title: {
+      //     text: 'Echarts5 柱状'
+      //   },
+      //   tooltip: {
+      //     display: 'none',
+      //     trigger: 'axis',
+      //     axisPointer: {
+      //       type: 'shadow'
+      //     }
+      //   },
+      //   xAxis: {
+      //     type: 'category',
+      //     data: ['周一', '周二', '周三', '周四', '周五']
+      //   },
+      //   yAxis: {
+      //     type: 'value'
+      //   },
+      //   legend: {
+      //     show: false
+      //   },
+      //   series: [
+      //     {
+      //       name: '星期',
+      //       type: 'bar',
+      //       data: [23, 33, 45, 56, 78]
+      //     }
+      //   ]
+      // }
       const option = {
         title: {
-          text: 'Echarts5 柱状'
+          text: '饼图程序调用高亮示例',
+          left: 'center'
         },
         tooltip: {
-          display: 'none',
-          trigger: 'axis',
-          axisPointer: {
-            type: 'shadow'
-          }
-        },
-        xAxis: {
-          type: 'category',
-          data: ['周一', '周二', '周三', '周四', '周五']
-        },
-        yAxis: {
-          type: 'value'
+          trigger: 'item',
+          formatter: '{a} <br/>{b} : {c} ({d}%)'
         },
         legend: {
-          show: false
+          orient: 'vertical',
+          left: 'left',
+          data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
         },
         series: [
           {
-            name: '星期',
-            type: 'bar',
-            data: [23, 33, 45, 56, 78]
+            name: '访问来源',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '60%'],
+            data: [
+              { value: 335, name: '直接访问' },
+              { value: 310, name: '邮件营销' },
+              { value: 234, name: '联盟广告' },
+              { value: 135, name: '视频广告' },
+              { value: 1548, name: '搜索引擎' }
+            ]
           }
         ]
       }
+
       bar.setOption(option)
+      // 测试绑定事件
+      bar.on('click', function() {
+        console.log('123')
+      })
+
+      let currentIndex = -1
+      setInterval(function() {
+        var dataLen = option.series[0].data.length
+        // 取消之前高亮的图形
+        bar.dispatchAction({
+          type: 'downplay',
+          seriesIndex: 0,
+          dataIndex: currentIndex
+        })
+        currentIndex = (currentIndex + 1) % dataLen
+        // 高亮当前图形
+        bar.dispatchAction({
+          type: 'highlight',
+          seriesIndex: 0,
+          dataIndex: currentIndex
+        })
+        // 显示 tooltip
+        bar.dispatchAction({
+          type: 'showTip',
+          seriesIndex: 0,
+          dataIndex: currentIndex
+        })
+        bar.dispatchAction({
+          type: 'click'
+        })
+      }, 1000)
     }
   }
 }

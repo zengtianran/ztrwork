@@ -26,10 +26,31 @@ const routes = [
     }
   }, {
     path: '/video',
-    name: 'DuoxueVedio',
-    component: () => import('@/views/DuoxueVedio'),
+    name: 'DuoxueVideo',
+    component: () => import('@/views/DuoxueVideo'),
     meta: {
-      title: 'DuoxueVedio'
+      title: 'DuoxueVideo'
+    }
+  }, {
+    path: '/executeComponent',
+    name: 'executeComponent',
+    component: () => import('@/views/ExecuteComponent'),
+    meta: {
+      title: 'executeComponent'
+    }
+  }, {
+    path: '/vuexDemo',
+    name: 'vuexDemo',
+    component: () => import('@/views/VuexDemo'),
+    meta: {
+      title: 'vuexDemo'
+    }
+  }, {
+    path: '/functional',
+    name: 'functional',
+    component: () => import('@/views/Functional'),
+    meta: {
+      title: 'functional'
     }
   }
 ]

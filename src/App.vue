@@ -1,6 +1,7 @@
 <template>
   <div class="app-wrap">
     <router-view />
+    <smart-component />
   </div>
 </template>
 
