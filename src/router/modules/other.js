@@ -17,6 +17,15 @@ const routes = [
       title: '',
       keepalive: false
     }
+  },
+  {
+    path: '/myDialog',
+    name: 'myDialog',
+    component: () => import('@/views/myDialog/index.vue'),
+    meta: {
+      title: '',
+      keepalive: false
+    }
   }
 ]
 
