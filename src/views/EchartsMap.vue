@@ -45,17 +45,26 @@ export default {
       //   ]
       // }
       const option = {
-        title: {
-          text: '饼图程序调用高亮示例',
-          left: 'center'
-        },
+        // title: {
+        //   text: '饼图程序调用高亮示例',
+        //   left: 'center'
+        // },
         tooltip: {
           trigger: 'item',
           formatter: '{a} <br/>{b} : {c} ({d}%)'
         },
         legend: {
-          orient: 'vertical',
-          left: 'left',
+          type: 'plain',
+          icon: 'circle',
+          show: true,
+          right: '0%',
+          top: 'top',
+          zlevel: 99,
+          textStyle: {
+            fontSize: '12',
+            color: '#000'
+          },
+          selectedMode: 'multiple',
           data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
         },
         series: [
@@ -81,32 +90,32 @@ export default {
         console.log('123')
       })
 
-      let currentIndex = -1
-      setInterval(function() {
-        var dataLen = option.series[0].data.length
-        // 取消之前高亮的图形
-        bar.dispatchAction({
-          type: 'downplay',
-          seriesIndex: 0,
-          dataIndex: currentIndex
-        })
-        currentIndex = (currentIndex + 1) % dataLen
-        // 高亮当前图形
-        bar.dispatchAction({
-          type: 'highlight',
-          seriesIndex: 0,
-          dataIndex: currentIndex
-        })
-        // 显示 tooltip
-        bar.dispatchAction({
-          type: 'showTip',
-          seriesIndex: 0,
-          dataIndex: currentIndex
-        })
-        bar.dispatchAction({
-          type: 'click'
-        })
-      }, 1000)
+      // let currentIndex = -1
+      // setInterval(function() {
+      //   var dataLen = option.series[0].data.length
+      //   // 取消之前高亮的图形
+      //   bar.dispatchAction({
+      //     type: 'downplay',
+      //     seriesIndex: 0,
+      //     dataIndex: currentIndex
+      //   })
+      //   currentIndex = (currentIndex + 1) % dataLen
+      //   // 高亮当前图形
+      //   bar.dispatchAction({
+      //     type: 'highlight',
+      //     seriesIndex: 0,
+      //     dataIndex: currentIndex
+      //   })
+      //   // 显示 tooltip
+      //   bar.dispatchAction({
+      //     type: 'showTip',
+      //     seriesIndex: 0,
+      //     dataIndex: currentIndex
+      //   })
+      //   bar.dispatchAction({
+      //     type: 'click'
+      //   })
+      // }, 1000)
     }
   }
 }
@@ -118,7 +127,7 @@ export default {
     text-align: justify;
     padding-left: 20px;
     padding-right: 20px;
-    padding-top: 60px;
+    padding-top: 140px;
     > div{
       width: 730px;
       height: 730px;

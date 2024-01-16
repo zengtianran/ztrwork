@@ -7,7 +7,13 @@ Dialog.newInstance = (properties) => {
   const props = properties || Dialog.props
   console.log(props, 'sssssss')
   console.log('Dialog 组件：', Dialog)
-  const app = createApp(Dialog, props)
+  const app = createApp(Dialog, {
+    ...props,
+    close: () => {
+      app.unmount(root)
+      document.body.removeChild(root)
+    }
+  })
   const root = document.createElement('div')
   document.body.appendChild(root)
   app.mount(root)

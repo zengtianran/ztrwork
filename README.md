@@ -1,5 +1,5 @@
 # 基于VUE3项目测试
-
+vue3.0.0 + vuex + webpack4 + vant3 + vue-router4
 ##### 导航首页
 
 ##### 生成目录tree
