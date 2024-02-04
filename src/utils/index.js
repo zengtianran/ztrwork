@@ -84,6 +84,7 @@ const _utils = {
     return function() {
       const ctx = this
       const args = arguments
+      console.log('debounce :>> ', last)
       clearTimeout(last)
       last = setTimeout(function() {
         fn.apply(ctx, args)

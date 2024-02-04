@@ -1,19 +1,31 @@
 <template>
+  <div>
     <div class="china-echarts">
-        <div id="barChart" ref="barChart" ></div>
+      <div id="barChart" ref="barChart"></div>
     </div>
+    <div class="btn-group">
+      <span @click="handleClickDebounce">去结算</span>
+    </div>
+  </div>
 </template>
 
 <script>
+import dayjs from 'dayjs'
 import echarts from '../utils/echartsUI'
+import utils from '../utils/index'
 export default {
   name: 'ChinaEcharts',
+  data() {
+    return {
+      _debounceHandle: null
+    }
+  },
   mounted() {
     this.initEcharts()
   },
   methods: {
     initEcharts() {
-    // 初始化echarts
+      // 初始化echarts
       const bar = echarts.init(this.$refs.barChart)
       // const option = {
       //   title: {
@@ -116,21 +128,45 @@ export default {
       //     type: 'click'
       //   })
       // }, 1000)
+    },
+    handleClickDebounce() {
+      const _handle = () => {
+        console.log('handleClickDebounce :>>>>>>>>>>>>>> ', dayjs().format('YYYYMMDDHHmmssSSS'))
+      }
+      if (!this._debounceHandle) {
+        this._debounceHandle = utils.debounce(_handle, 1000)
+        this._debounceHandle()
+        return
+      }
+      this._debounceHandle()
     }
   }
 }
 </script>
 
 <style lang="less" scoped>
-.china-echarts{
-    display: flex;
-    text-align: justify;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 140px;
-    > div{
-      width: 730px;
-      height: 730px;
-    }
+.china-echarts {
+  display: flex;
+  text-align: justify;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 140px;
+  > div {
+    width: 730px;
+    height: 730px;
+  }
+}
+.btn-group {
+  display: flex;
+  padding: 30px 10px;
+  span {
+    flex: 1;
+    font-size: 30px;
+    text-align: center;
+    padding: 24px;
+    color: #fff;
+    background-color: #07c160;
+    border: 1px solid #07c160;
+  }
 }
 </style>
